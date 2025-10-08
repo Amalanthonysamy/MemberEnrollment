@@ -14,7 +14,7 @@ type BusinessUnit struct {
 	BusinessUnitCode string
 	BusinessUnitName     string
 	BusinessUnitDescription string
-	BusinessType bool
+	BusinessType string
 }
 type Member struct {
 	MemberCode        string
@@ -31,9 +31,3 @@ type Member struct {
 	UpdatedAt time.Time
 }
 
-type Store interface {
-	CreateMember(ctx context.Context, member *Member) error
-	GetMember(ctx context.Context, id string) (*Member, error)
-	UpdateMember(ctx context.Context, member *Member) error
-	DeleteMember(ctx context.Context, id string) error
-}

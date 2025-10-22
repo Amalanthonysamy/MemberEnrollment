@@ -6,6 +6,7 @@ import (
 
 	_ "MemberEnrollment/APIDevelopment/docs"
 	"MemberEnrollment/APIDevelopment/store"
+
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
@@ -17,23 +18,23 @@ import (
 // @contact.email parameswaribala@gmail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:7072
+// @host localhost:7177
 // @BasePath /
 func main() {
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("GET /claims/v1.0", store.GetMembers)
-	mux.HandleFunc("POST /claims/v1.0", store.SaveMember)
-	mux.HandleFunc("GET /claims/v1.0/{memberid}", store.GetMemberByID)
-	mux.HandleFunc("PUT /claims/v1.0/{memberid}", store.UpdateMember)
-	mux.HandleFunc("DELETE /claims/v1.0/{memberid}", store.DeleteMember)
+	mux.HandleFunc("GET /members/v1.0", store.GetMembers)
+	mux.HandleFunc("POST /members/v1.0", store.SaveMember)
+	mux.HandleFunc("GET /members/v1.0/{memberid}", store.GetMemberByID)
+	mux.HandleFunc("PUT /members/v1.0/{memberid}", store.UpdateMember)
+	mux.HandleFunc("DELETE /members/v1.0/{memberid}", store.DeleteMember)
 	// Swagger UI served at /swagger/
 	mux.Handle("/swagger/", httpSwagger.WrapHandler)
 
 	// Your own handlers
-	// mux.HandleFunc("/claims", claimsHandler)
+	// mux.HandleFunc("/members", membersHandler)
 
-	log.Println("Server running at http://localhost:7072")
-	log.Fatal(http.ListenAndServe(":7072", mux))
+	log.Println("Server running at http://localhost:7177")
+	log.Fatal(http.ListenAndServe(":7177", mux))
 
 }

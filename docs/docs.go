@@ -23,9 +23,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/claims/v1.0": {
+        "/members/v1.0": {
             "get": {
-                "description": "Returns list of claims",
+                "description": "Returns list of members",
                 "consumes": [
                     "application/json"
                 ],
@@ -33,23 +33,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "claims"
+                    "members"
                 ],
-                "summary": "Get all claims",
+                "summary": "Get all members",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/store.Claim"
+                                "$ref": "#/definitions/store.Member"
                             }
                         }
                     }
                 }
             },
             "post": {
-                "description": "Adds a new claim",
+                "description": "Adds a new member",
                 "consumes": [
                     "application/json"
                 ],
@@ -57,17 +57,17 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "claims"
+                    "members"
                 ],
-                "summary": "Create a new claim",
+                "summary": "Create a new member",
                 "parameters": [
                     {
-                        "description": "Claim to create",
-                        "name": "claim",
+                        "description": "Member to create",
+                        "name": "member",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     }
                 ],
@@ -75,7 +75,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     },
                     "400": {
@@ -90,9 +90,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/claims/v1.0/{claimid}": {
+        "/members/v1.0/{memberid}": {
             "get": {
-                "description": "Get details of requested claim",
+                "description": "Get details of requested member",
                 "consumes": [
                     "application/json"
                 ],
@@ -100,14 +100,14 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "claims"
+                    "members"
                 ],
-                "summary": "Get details of requested claim",
+                "summary": "Get details of requested member",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "ID of the Claim",
-                        "name": "claimid",
+                        "description": "ID of the Member",
+                        "name": "memberid",
                         "in": "path",
                         "required": true
                     }
@@ -116,7 +116,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     },
                     "400": {
@@ -129,7 +129,7 @@ const docTemplate = `{
                         }
                     },
                     "404": {
-                        "description": "Claim not found",
+                        "description": "Member not found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -140,7 +140,7 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "description": "Update existing claim with the input payload",
+                "description": "Update existing member with the input payload",
                 "consumes": [
                     "application/json"
                 ],
@@ -148,24 +148,24 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "claims"
+                    "members"
                 ],
-                "summary": "Update existing claim",
+                "summary": "Update existing member",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "ID of the Claim to update",
-                        "name": "claimid",
+                        "description": "ID of the Member to update",
+                        "name": "memberid",
                         "in": "path",
                         "required": true
                     },
                     {
-                        "description": "Updated claim fields",
-                        "name": "claim",
+                        "description": "Updated member fields",
+                        "name": "member",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     }
                 ],
@@ -173,7 +173,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     },
                     "400": {
@@ -186,7 +186,7 @@ const docTemplate = `{
                         }
                     },
                     "404": {
-                        "description": "Claim not found",
+                        "description": "Member not found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -197,7 +197,7 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "description": "Delete requested claim",
+                "description": "Delete requested member",
                 "consumes": [
                     "application/json"
                 ],
@@ -205,14 +205,14 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "claims"
+                    "members"
                 ],
-                "summary": "Delete requested claim",
+                "summary": "Delete requested member",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "ID of the Claim",
-                        "name": "claimid",
+                        "description": "ID of the Member",
+                        "name": "memberid",
                         "in": "path",
                         "required": true
                     }
@@ -221,7 +221,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/store.Claim"
+                            "$ref": "#/definitions/store.Member"
                         }
                     },
                     "400": {
@@ -234,7 +234,7 @@ const docTemplate = `{
                         }
                     },
                     "404": {
-                        "description": "Claim not found",
+                        "description": "Member not found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -247,22 +247,74 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "store.Claim": {
+        "store.BusinessUnit": {
             "type": "object",
             "properties": {
-                "amount": {
-                    "type": "integer"
-                },
-                "created_at": {
+                "businessType": {
                     "type": "string"
                 },
-                "description": {
+                "businessUnitCode": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "integer"
+                "businessUnitDescription": {
+                    "type": "string"
                 },
-                "status": {
+                "businessUnitName": {
+                    "type": "string"
+                }
+            }
+        },
+        "store.Member": {
+            "type": "object",
+            "properties": {
+                "businessUnit": {
+                    "$ref": "#/definitions/store.BusinessUnit"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "dob": {
+                    "type": "string"
+                },
+                "effectiveDate": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "memberCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "planDetails": {
+                    "$ref": "#/definitions/store.PlanProduct"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "store.PlanProduct": {
+            "type": "object",
+            "properties": {
+                "planProductCode": {
+                    "type": "string"
+                },
+                "planProductDescription": {
+                    "type": "string"
+                },
+                "planProductName": {
                     "type": "string"
                 }
             }
@@ -273,7 +325,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:7072",
+	Host:             "localhost:7177",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Claim API",
